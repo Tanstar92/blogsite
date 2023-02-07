@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container pt-5">
+
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+    {% if category == "error" %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    
+        {% elif category == "warning" %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    
+        {% else %}
+    
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% endif %}
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+    
+        {{ form.email.label(class='form-label') }}
+        {{ form.email(class='form-control') }}
+        <br>
+    
+        {{ form.password.label(class='form-label') }}
+        {{ form.password(class='form-control') }}
+        <br>
+        <div class="d-grid gap-2 col-6 mx-auto">
+    
+            {{ form.login(class='btn btn-primary') }}
+        </div>
+    </form>
+    <hr>
+    <p>Create new account? <a href="{{ url_for('signup') }}">Signup</a></p>
+
+</div>
+
+{% endblock %}

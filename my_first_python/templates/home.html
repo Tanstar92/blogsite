@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+{% for category, message in get_flashed_messages(with_categories=true) %}
+    {% if category == "error" %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    
+        {% elif category == "warning" %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    
+        {% else %}
+    
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {% endif %}
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <div class="home-container">
+
+            <div class="container">
+                {% for blog in blogs %}
+                <div class="card my-3">
+                    <img src="{{ url_for('static', filename='images/' + blog[2])}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">{{ blog[1] }}</p>
+                      <p class="card-text"><small class="text-muted">Updated at: {{ blog[3] }}</small></p>
+                      <p class="card-text"><small class="text-muted">Author: {{ blog[4] }}</small></p>
+                      {% if email == blog[4] %}
+                        <a href="{{ url_for('delete_blog', blog_id=blog[0]) }}" class="btn btn-danger btn-sm">Delete Blog</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock %}

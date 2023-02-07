@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container w-75">
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+    
+        {{ form.content.label(class='form-label') }}
+        {{ form.content(class='form-control') }}
+        <br>
+    
+        {{ form.image.label(class='form-label') }}
+        {{ form.image(class='form-control', accept='image/jpeg, image/jpg') }}
+        <br>
+        <div class="d-grid gap-2 col-6 mx-auto">
+    
+            {{ form.post(class='btn btn-primary') }}
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
