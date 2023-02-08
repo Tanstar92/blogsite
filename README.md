@@ -1,3 +1,3 @@
 # blogsite
-python blogsite
+python flask blogsite
 this 
